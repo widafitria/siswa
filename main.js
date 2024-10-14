@@ -60,3 +60,13 @@ export async function tambahSiswa(nama, alamat) {
 export async function hapusSiswa(id) {
   await deleteDoc(doc(basisdata, "siswa", id))
 }
+
+export async function ambilSiswa(id) {
+  const refDokumen = await doc(basisdata, "siswa", id)
+  const snapshotDokumen = await getDoc(refDokumen)
+  
+  return await snapshotDokumen.data()
+}
+export async function ubahSiswa(id, nama, alamat) {
+  await updateDoc(doc(basisdata, "siswa", id), { nama:nama, alamat:alamat })
+}
